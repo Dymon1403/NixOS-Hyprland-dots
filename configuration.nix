@@ -13,7 +13,7 @@
   # Network
   # ============================================
 
-  networking.hostName = "YOUR NAME";
+  networking.hostName = "YOURNAME";
 
   networking.networkmanager.enable = true;
 
@@ -52,7 +52,7 @@
   # User
   # ============================================
 
-  users.users.SET YOUR USER = {
+  users.users.#SETYOURUSER = {
     isNormalUser = true;
 
     extraGroups = [
