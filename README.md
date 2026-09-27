@@ -18,3 +18,13 @@ git add .
 sudo nixos-rebuild switch --flake .#YOUR NETWORK NAME IN configuration.nix
 
 ```
+akdaspdodjapsf
+
+replace hyprland.lua and waybar
+da
+```bash
+cp hypr/hyprland/lua ~/.config/hypr/hyprland.lua
+cp waybar/config ~/.config/waybar/config
+cp waybar/style.css ~/.config/waybar/style.css
+
+```
