@@ -13,7 +13,7 @@
   # Network
   # ============================================
 
-  networking.hostName = "thinkpad";
+  networking.hostName = "YOUR NAME";
 
   networking.networkmanager.enable = true;
 
@@ -52,7 +52,7 @@
   # User
   # ============================================
 
-  users.users.dmitrj = {
+  users.users.SET YOUR USER = {
     isNormalUser = true;
 
     extraGroups = [
