@@ -17,55 +17,11 @@
 
   networking.networkmanager.enable = true;
 
-    
-  # ============================================
-  # Thinkfan
-  # ============================================
-  
-  boot.extraModprobeConfig = ''
-    options thinkpad_acpi fan_control=1
-  '';
-
-  services.thinkfan = {
-    enable = true;
-    # Используем встроенный интерфейс ThinkPad ACPI для управления кулером
-    sensors = [
-      {
-        type = "tpacpi";
-        query = "/proc/acpi/ibm/thermal";
-      }
-    ];
-    levels = [
-      [ 0  0  55 ]
-      [ 1  48 62 ]
-      [ 2  58 68 ]
-      [ 3  63 74 ]
-      [ 7  70 82 ]
-      [ "level auto" 80 32767 ]
-    ];
-  };
-  
-  
-  # ============================================
-  # Throttled
-  # ============================================
-
-  services.throttled.enable = true;
-  services.power-profiles-daemon.enable = false;
-
   # ============================================
   # Ssh
   # ============================================
 
-  services.openssh.enable = true;
-   
-  
-
-  # ============================================
-  # thermald
-  # ============================================
-  
-  services.thermald.enable = true;
+  services.openssh.enable = true;  
 
   # ============================================
   # Locale / Time
@@ -117,18 +73,6 @@
 
   hardware.enableRedistributableFirmware = true;
 
-
-  # ============================================
-  # Graph for Graph
-  # ============================================
-  
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      intel-vaapi-driver
-    ];
-  };
 
   # ============================================
   # Login manager
