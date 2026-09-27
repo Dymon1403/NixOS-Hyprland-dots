@@ -28,3 +28,10 @@ cp waybar/config ~/.config/waybar/config
 cp waybar/style.css ~/.config/waybar/style.css
 
 ```
+# NOTE
+CP YOUR hardware-configuration.nix IN DOTS DIR
+
+```bash
+sudo cp /etc/nixos/hardware-configuration.nix ~/NixOS-Hyprland-dots3333/
+
+```
