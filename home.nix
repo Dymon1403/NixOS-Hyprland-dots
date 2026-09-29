@@ -23,25 +23,6 @@
 
   ];
 
-  programs.bash = {
-           enable = true;
-           shellAliases =
-           let
-                   flakePath = "~/dot";
-           in {
-
-                   ls = "ls --color=auto";
-                   grep = "grep --color=auto";
-                   bt = "bluetoothctl";
-                   ff = "fastfetch";
-                   cm = "cmus";
-                   ssh = "ssh dmitrj@192.168.0.228";
-                   nn = "nvim ~/dot/configuration.nix";
-                   zap = "./zapret.sh";
-                   ss = "sudo nixos-rebuild switch --flake .#thinkpad $(flakePath)";
-           };
-  };
-
 
   programs.neovim = {
   enable = true;
