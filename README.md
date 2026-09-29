@@ -7,8 +7,7 @@ git clone https://github.com/Dymon1403/NixOS-Hyprland-dots3333.git
 cd NixOS-Hyprland-dots3333/
 ```
 Replace configuration.nix and rename the variables within it for example, `networking.hostName` and `users.users.`
-you need rename username in `configuration.nix`, `home.nix`, `flake.nix` and change the name and label of the discs to your own in `hardware-confgiration.nix`
-
+you need rename username in `configuration.nix`, `home.nix`, `flake.nix`
 ```bash
 git init
 git add .
