@@ -5,12 +5,13 @@ i just love hyprland and nixos
 anus
 ![Desktop Preview](Screenshots/screen2)
 
+
 Or so:
 ![Desktop Preview](Screenshots/screen1)
 
 
 OR:
-![Desktop Preview](Screenshots/screen3)
+![Desktop Preview](Screenshots/screeen3)
 
 
 # install
