@@ -1,11 +1,16 @@
 # NixOS-Hyprland-dots
 i just love hyprland and nixos
 
-![Desktop Preview](Screenshots/screen2.png)
 
-![Desktop Preview](Screenshots/screen1.png)
+anus
+![Desktop Preview](Screenshots/screen2)
 
-![Desktop Preview](Screenshots/screen3.png)
+Or so:
+![Desktop Preview](Screenshots/screen1)
+
+
+OR:
+![Desktop Preview](Screenshots/screen3)
 
 
 # install
