@@ -7,19 +7,25 @@
 
   home.packages = with pkgs; [
     fastfetch
+
     htop
-    alacritty
+
+    nautilus
+
     slurp
+
     openssh
-    cava
+
     gcc
     gnumake
+
     btop
+
     grim
     ripgrep
+
     fd
     pywal16
-
 
   ];
 
@@ -74,7 +80,7 @@
     vim.opt.background = "light"
 
     require("catppuccin").setup({
-      flavour = "latte",
+      flavour = "mocha",
     })
     vim.cmd.colorscheme("catppuccin")
 
@@ -208,26 +214,19 @@
             action = "Telescope live_grep",
           },
           {
-            icon = "󰒓 ",
-            desc = "Open Home Manager   ",
-            key = "c",
-            action = "e ~/dot/home.nix",
-          },
-          {
             icon = "󰈆 ",
             desc = "Quit Neovim         ",
             key = "q",
             action = "qa",
           },
         },
-        footer = { "nyanvim / nixos" },
+        footer = { "nyanvim / nixos / dmitrj;3333" },
       },
     })
 
 
   '';
 };
-
 
   nixpkgs.config.allowUnfree = true;
 
