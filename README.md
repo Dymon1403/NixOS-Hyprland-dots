@@ -3,7 +3,7 @@ i just love hyprland and nixos
 
 
 this:
-![Desktop Preview](Screenshots/screen2)
+![Desktop Preview](Screenshots/screen2.png)
 
 
 Or so:
