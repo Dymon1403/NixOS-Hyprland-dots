@@ -1,7 +1,7 @@
 # NixOS-Hyprland-dots
 i just love hyprland and nixos
 
-![Desktop Preview](Screenshots/Pasted Image.png)
+![Desktop Preview](Screenshots/Pasted\Image.png)
 
 ![Desktop Preview](Screenshots/Pasted Image (2).png)
 
