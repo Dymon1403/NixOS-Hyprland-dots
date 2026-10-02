@@ -38,7 +38,7 @@ cp waybar/style.css ~/.config/waybar/style.css
 
 ```
 
-bash```
+```bash
 mv NixOS-Hyprland-dots/  anus/
 
 ```
