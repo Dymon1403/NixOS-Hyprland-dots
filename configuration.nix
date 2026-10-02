@@ -4,8 +4,7 @@
   # ============================================
   # Boot
   # ============================================
-  # maybe all go fine
-  
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -13,15 +12,72 @@
   # Network
   # ============================================
 
-  networking.hostName = "YOURNAME";
+  networking.hostName = "thinkpad";
 
   networking.networkmanager.enable = true;
+
+  # ============================================
+  # Thinkfan
+  # ============================================
+
+  boot.extraModprobeConfig = ''
+    options thinkpad_acpi fan_control=1
+  '';
+
+  services.thinkfan = {
+    enable = true;
+    sensors = [
+      {
+        type = "tpacpi";
+        query = "/proc/acpi/ibm/thermal";
+      }
+    ];
+    levels = [
+      [ 0  0  55 ]
+      [ 1  48 62 ]
+      [ 2  58 68 ]
+      [ 3  63 74 ]
+      [ 7  70 82 ]
+      [ "level auto" 80 32767 ]
+    ];
+  };
+
+  # ============================================
+  # Throttled
+  # ============================================
+
+  services.throttled.enable = true;
+  services.power-profiles-daemon.enable = false;
 
   # ============================================
   # Ssh
   # ============================================
 
-  services.openssh.enable = true;  
+  services.openssh.enable = true;
+
+  # ============================================
+  # Bash_Aliases
+  # ============================================
+
+  environment.shellAliases = {
+
+            ls = "ls --color=auto";
+            grep = "grep --color=auto";
+            bt = "bluetoothctl";
+            ff = "fastfetch";
+            cm = "cmus";
+            ssh = "ssh dmitrj@192.168.0.228";
+            nn = "nvim ~/dot/configuration.nix";
+            zap = "./zapret.sh";
+            ss = "sudo nixos-rebuild switch --flake .#thinkpad";
+
+           };
+
+  # ============================================
+  # thermald
+  # ============================================
+
+  services.thermald.enable = true;
 
   # ============================================
   # Locale / Time
@@ -31,13 +87,11 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-
   i18n.extraLocaleSettings = {
     LC_TIME = "ru_RU.UTF-8";
-  
+
   };
 
-  
   # ============================================
   # Keyboard
   # ============================================
@@ -47,25 +101,27 @@
     options = "grp:caps_toggle,caps:shift_capslock";
   };
 
-
   # ============================================
   # User
   # ============================================
 
-  users.users.#SETYOURUSER = {
+  users.users.dmitrj = {
     isNormalUser = true;
 
     extraGroups = [
       "wheel"
+
       "networkmanager"
+
       "video"
+
       "input"
+
       "docker"
   ];
 
     shell = pkgs.bash;
   };
-
 
   # ============================================
   # Firmware
@@ -73,13 +129,23 @@
 
   hardware.enableRedistributableFirmware = true;
 
+  # ============================================
+  # Graph for Graph
+  # ============================================
+
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-vaapi-driver
+    ];
+  };
 
   # ============================================
   # Login manager
   # ============================================
 
   services.displayManager.ly.enable = true;
-
 
   # ============================================
   # Hyprland
@@ -89,7 +155,6 @@
     enable = true;
     xwayland.enable = true;
   };
-
 
   # ============================================
   # XDG portals
@@ -103,7 +168,6 @@
     ];
   };
 
-  
   # --------------------------------------------
   # Cursor
   # --------------------------------------------
@@ -112,13 +176,11 @@
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "20";
   };
-  
 
-  
   # --------------------------------------------
   # Font in system
   # --------------------------------------------
- 
+
   fonts.fontconfig.defaultFonts = {
     monospace = [ "JetBrainsMono Nerd Font" ];
   };
@@ -138,19 +200,15 @@
 
   security.rtkit.enable = true;
 
-
   # ============================================
   # Packages
   # ============================================
 
   environment.systemPackages = with pkgs; [
 
-    # --------------------------------------------
-    # System
-    # --------------------------------------------
-
-    git
-    neovim
+  # --------------------------------------------
+  # System
+  # --------------------------------------------
 
     wget
     curl
@@ -160,23 +218,29 @@
 
     unzip
 
-    # --------------------------------------------
-    # Terminal, alactirry best terminal ever lollll
-    # --------------------------------------------
+  # --------------------------------------------
+  # GIT
+  # --------------------------------------------
 
-    alacritty
+    git
+
+  # --------------------------------------------
+  # Terminal, alactirry best terminal ever lollll
+  # --------------------------------------------
+
     starship
+    alacritty
 
+  # --------------------------------------------
+  # Desktop
+  # --------------------------------------------
 
-    # --------------------------------------------
-    # Desktop
-    # --------------------------------------------
-    
     waybar
 
-    # --------------------------------------------
-    # Hyprland utilities
-    # --------------------------------------------
+
+  # --------------------------------------------
+  # Hyprland utilities
+  # --------------------------------------------
 
     grim
     slurp
@@ -185,53 +249,52 @@
     brightnessctl
 
 
-    # --------------------------------------------
-    # Wallpaper
-    # --------------------------------------------
+  # --------------------------------------------
+  # Wallpaper
+  # --------------------------------------------
 
     waypaper
     awww
 
 
-    # --------------------------------------------
-    # Audio
-    # --------------------------------------------
+  # --------------------------------------------
+  # Audio
+  # --------------------------------------------
 
     pulsemixer
-
+    pavucontrol
     mpd
     mpc
     mpd-mpris
     playerctl
-    ncmpcpp 
-    
-    # --------------------------------------------
-    # Cursor
-    # --------------------------------------------
-    
+    ncmpcpp
+
+  # --------------------------------------------
+  # Cursor
+  # --------------------------------------------
+
     bibata-cursors
 
-    # --------------------------------------------
-    # Applications
-    # --------------------------------------------
-    
+  # --------------------------------------------
+  # Applications
+  # --------------------------------------------
+
+    nautilus
     telegram-desktop
     rofi
     firefox
-    nautilus  
 
   ];
-    
 
-    # --------------------------------------------
-    # Fonts
-    # --------------------------------------------
-  fonts.packages = with pkgs; [  
+  # --------------------------------------------
+  # Fonts
+  # --------------------------------------------
+
+  fonts.packages = with pkgs; [
     material-design-icons
     font-awesome
     nerd-fonts.jetbrains-mono
   ];
-
 
   # ============================================
   # Fonts
@@ -239,6 +302,15 @@
 
   fonts.fontconfig.enable = true;
 
+  # ============================================
+  # Bluetooth
+  # ============================================
+
+  services.blueman.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
 
   # ============================================
   # Nix
@@ -246,12 +318,18 @@
 
   nix.settings.auto-optimise-store = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
+
+  # ============================================
+  # Appimage_in_nix
+  # ============================================
+
+  programs.nix-ld.enable = true;
 
   # ============================================
   # NixOS version
