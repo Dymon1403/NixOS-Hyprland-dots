@@ -2,7 +2,7 @@
 i just love hyprland and nixos
 
 
-anus
+this:
 ![Desktop Preview](Screenshots/screen2)
 
 
