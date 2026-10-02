@@ -1,6 +1,13 @@
 # NixOS-Hyprland-dots
 i just love hyprland and nixos
 
+![Desktop Preview](Screenshots/Pasted Image.png)
+
+![Desktop Preview](Screenshots/Pasted Image (2).png)
+
+![Desktop Preview](Screenshots/Pasted Image(3).png)
+
+
 # install
 ```bash
 git clone https://github.com/Dymon1403/NixOS-Hyprland-dots.git
