@@ -12,7 +12,7 @@
   # Network
   # ============================================
 
-  networking.hostName = "sethostname";
+  networking.hostName = "thinkpad";
 
   networking.networkmanager.enable = true;
 
@@ -66,9 +66,12 @@
             bt = "bluetoothctl";
             ff = "fastfetch";
             cm = "cmus";
+            home = "ssh dmitrj@192.168.0.228";
             nn = "nvim ~/dot/configuration.nix";
             zap = "./zapret.sh";
-           };
+            ss = "sudo nixos-rebuild switch --flake .#thinkpad";
+
+            };
 
   # ============================================
   # thermald
@@ -102,7 +105,7 @@
   # User
   # ============================================
 
-  users.users.setnamePLZ = {
+  users.users.dmitrj = {
     isNormalUser = true;
 
     extraGroups = [
@@ -132,6 +135,7 @@
 
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver
       intel-vaapi-driver
@@ -300,6 +304,35 @@
   fonts.fontconfig.enable = true;
 
   # ============================================
+  # Zapret
+  # ============================================
+
+  services.zapret = {
+    enable = true;
+    #whitelist = [
+     # "rutracker.org"
+     # "youtube.com"
+     # "discord.com"
+     # "discord.gg"
+     # "discordapp.com"
+     # "discordapp.net"
+     # "ciscobinary.openh264.org"
+
+    #];
+    configureFirewall = true;
+    params = [
+       "--dpi-desync=fake,fakedsplit"
+       "--dpi-desync-fooling=badseq"
+       "--dpi-desync-split-pos=1"
+       "--dpi-desync-fake-tls=!"
+       "--dpi-desync-fake-tls-mod=rnd,dupsid"
+
+
+    ];
+  };
+
+
+  # ============================================
   # Bluetooth
   # ============================================
 
@@ -308,6 +341,36 @@
     enable = true;
     powerOnBoot = false;
   };
+
+
+  # ============================================
+  # Tailscale
+  # ============================================
+
+  services.tailscale.enable = true;
+
+
+  # ============================================
+  # MPD
+  # ============================================
+
+  services.mpd = {
+    enable = true;
+    musicDirectory = "/home/dmitrj/Music";
+    user = "dmitrj";
+
+    settings = {
+      bind_to_address = "127.0.0.1";
+      port = 6600;
+      audio_output = [
+        {
+          type = "pipewire";
+          name = "PipeWire Output";
+        }
+      ];
+    };
+  };
+
 
   # ============================================
   # Nix
@@ -326,7 +389,28 @@
   # Appimage_in_nix
   # ============================================
 
-  programs.nix-ld.enable = true;
+  nixpkgs.config.allowUnfree = true;
+
+  boot.binfmt.registrations.appimage = {
+    wrapInterpreterInShell = false;
+    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+    recognitionType = "magic";
+    offset = 0;
+    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+    magicOrExtension = ''\x7fELF....AI\x02'';
+  };
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+
+    package = pkgs.appimage-run.override {
+      extraPkgs = pkgs: [
+        pkgs.icu
+      ];
+    };
+  };
+
 
   # ============================================
   # NixOS version
