@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "setthename";
-  home.homeDirectory = "/home/your home.username";
+  home.username = "dmitrj";
+  home.homeDirectory = "/home/dmitrj";
   home.stateVersion = "26.05";
 
   home.packages = with pkgs; [
@@ -11,6 +11,19 @@
     htop
 
     nautilus
+
+    gh
+
+    mpv
+
+    ffmpeg
+
+    (python3.withPackages (ps: with ps; [
+      openai-whisper
+      python-mpd2
+      sounddevice
+      numpy
+    ]))
 
     slurp
 
@@ -24,8 +37,23 @@
     grim
     ripgrep
 
+    tree
     fd
     pywal16
+
+    pfetch
+    sunvox
+
+    tailscale
+
+    hyprpaper
+
+
+    localsend
+    steam
+    portablemc
+    discord
+    krita
 
   ];
 
@@ -56,6 +84,8 @@
     cmp_luasnip
     luasnip
 
+    pywal-nvim
+
     (nvim-treesitter.withPlugins (p: [
       p.tree-sitter-nix
       p.tree-sitter-lua
@@ -76,13 +106,6 @@
     vim.opt.termguicolors = true
     vim.opt.cursorline = true
     vim.opt.signcolumn = "yes"
-
-    vim.opt.background = "light"
-
-    require("catppuccin").setup({
-      flavour = "mocha",
-    })
-    vim.cmd.colorscheme("catppuccin")
 
     require("oil").setup()
     vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
@@ -143,8 +166,8 @@
         },
       },
       presets = {
-        bottom_search = false,
-        command_palette = true,
+        bottom_search = false, -- поиск тоже выводится в плавающем окне
+        command_palette = true, -- центрирует ":"
         long_message_to_split = true,
       },
     })
@@ -227,7 +250,6 @@
 
   '';
 };
-
   nixpkgs.config.allowUnfree = true;
 
   programs.home-manager.enable = true;
