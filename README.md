@@ -55,3 +55,4 @@ cp waybar/style.css ~/.config/waybar/style.css
 mv NixOS-Hyprland-dots/  anus/
 
 ```
+great, its all
