@@ -42,12 +42,10 @@ sudo nixos-rebuild switch --flake .#YOUR NETWORK NAME IN configuration.nix
 ```
 akdaspdodjapsf
 
-replace hyprland.lua and waybar
-da
+move hyprland.lua ro your PATH(.config/hypr/hyprland.lua)
+
 ```bash
-cp hypr/hyprland.lua ~/.config/hypr/hyprland.lua
-cp waybar/config ~/.config/waybar/config
-cp waybar/style.css ~/.config/waybar/style.css
+cp hypr/hyprland.lua ../.config/hypr/hyprland.lua
 
 ```
 
