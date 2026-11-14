@@ -1,7 +1,6 @@
 
-
 local terminal = "alacritty"
-local file_manager = "nautilus"
+local file_manager = "dolphin"
 local launcher = "rofi -show drun"
 
 
@@ -59,8 +58,8 @@ hl.bind(
 
 hl.config({
     general = {
-        gaps_in = 1,
-        gaps_out = 1,
+        gaps_in = 9,
+        gaps_out = 9,
 
         border_size = 1,
 
@@ -78,9 +77,9 @@ hl.config({
 hl.config({
     decoration = {
         rounding = 10,
-        rounding_power = 2,
+        rounding_power = 0,
 
-        active_opacity = 0.9,
+        active_opacity = 0.95,
         inactive_opacity = 0.9,
 
         shadow = {
@@ -144,7 +143,7 @@ hl.monitor({
     output = "",
     mode = "highres",
     position = "auto",
-    scale = 1,
+    scale = 0.95,
 })
 
 -- =========================================================
@@ -263,14 +262,14 @@ hl.curve("myBezier", {
 hl.animation({
     leaf = "windows",
     enabled = true,
-    speed = 7,
+    speed = 4,
     bezier = "myBezier",
 })
 
 hl.animation({
     leaf = "windowsOut",
     enabled = true,
-    speed = 1,
+    speed = 3,
     bezier = "default",
     style = "popin 80%",
 })
@@ -292,7 +291,7 @@ hl.animation({
 hl.animation({
     leaf = "workspaces",
     enabled = true,
-    speed = 3,
+    speed = 2,
     bezier = "default",
     style = "slidevert",
 })
@@ -315,6 +314,29 @@ hl.bind("SUPER + 9", hl.dsp.focus({ workspace = 9 }))
 hl.bind("SUPER + 0", hl.dsp.focus({ workspace = 10 }))
 
 
+-- =========================================================
+      -- focus window
+      -- =========================================================
+
+      hl.bind(
+          "SUPER + left",
+          hl.dsp.focus({ direction = "left" })
+      )
+
+      hl.bind(
+          "SUPER + right",
+          hl.dsp.focus({ direction = "right" })
+      )
+
+      hl.bind(
+          "SUPER + up",
+          hl.dsp.focus({ direction = "up" })
+      )
+
+      hl.bind(
+          "SUPER + down",
+          hl.dsp.focus({ direction = "down" })
+      )
 
 -- =========================================================
 -- move window to worlspaces

@@ -7,7 +7,6 @@
 
     settings = {
       global = {
-        font = "JetBrainsMono Nerd Font 10";
         format = "<b>%s</b>\\n%b";
         origin = "top-right";
         offset = "10x10";

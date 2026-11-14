@@ -4,7 +4,7 @@
   # ============================================
   # Boot
   # ============================================
-
+  
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -13,13 +13,12 @@
   # ============================================
 
   networking.hostName = "thinkpad";
-
   networking.networkmanager.enable = true;
 
   # ============================================
   # Thinkfan
   # ============================================
-
+  
   boot.extraModprobeConfig = ''
     options thinkpad_acpi fan_control=1
   '';
@@ -41,7 +40,7 @@
       [ "level auto" 80 32767 ]
     ];
   };
-
+  
   # ============================================
   # Throttled
   # ============================================
@@ -54,7 +53,7 @@
   # ============================================
 
   services.openssh.enable = true;
-
+   
   # ============================================
   # Bash_Aliases
   # ============================================
@@ -66,17 +65,21 @@
             bt = "bluetoothctl";
             ff = "fastfetch";
             cm = "cmus";
-            home = "ssh dmitrj@192.168.0.228";
+            home = "ssh server@192.168.0.228";
+            dop = "ssh server@192.168.0.109";
             nn = "nvim ~/dot/configuration.nix";
             zap = "./zapret.sh";
-            ss = "sudo nixos-rebuild switch --flake .#thinkpad";
+            ss = "sudo nixos-rebuild switch --flake .#thinkpad$";
+            # sleep = "python3 sleep.py";
+            # docker = "python3 docker.py";
+            pushall = "git push origin master && git push forgejo master";
 
             };
 
   # ============================================
   # thermald
   # ============================================
-
+  
   services.thermald.enable = true;
 
   # ============================================
@@ -89,7 +92,7 @@
 
   i18n.extraLocaleSettings = {
     LC_TIME = "ru_RU.UTF-8";
-
+  
   };
 
   # ============================================
@@ -100,6 +103,9 @@
     layout = "us,ru";
     options = "grp:caps_toggle,caps:shift_capslock";
   };
+
+  services.xserver.enable = true;
+  services.xserver.windowManager.dwm.enable = true;
 
   # ============================================
   # User
@@ -112,7 +118,7 @@
       "wheel"
 
       "networkmanager"
-
+      
       "video"
 
       "input"
@@ -132,7 +138,7 @@
   # ============================================
   # Graph for Graph
   # ============================================
-
+  
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -177,13 +183,13 @@
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "20";
   };
-
+  
   # --------------------------------------------
   # Font in system
   # --------------------------------------------
-
+ 
   fonts.fontconfig.defaultFonts = {
-    monospace = [ "JetBrainsMono Nerd Font" ];
+    monospace = ["JetBrainsMono Nerd Font"];
   };
 
   # ============================================
@@ -208,55 +214,29 @@
   environment.systemPackages = with pkgs; [
 
   # --------------------------------------------
-  # System
+  # GIT 
   # --------------------------------------------
-
-    wget
-    curl
-
-    htop
-    fastfetch
-
-    unzip
-
-  # --------------------------------------------
-  # GIT
-  # --------------------------------------------
-
+    
     git
-
+    
   # --------------------------------------------
-  # Terminal, alactirry best terminal ever lollll
-  # --------------------------------------------
-
-    starship
-    alacritty
-
-  # --------------------------------------------
-  # Desktop
+  # Ssh
   # --------------------------------------------
 
-    waybar
+  openssh
 
+  # --------------------------------------------
+  # Compiler
+  # --------------------------------------------
+
+  gcc
+  gnumake
 
   # --------------------------------------------
   # Hyprland utilities
   # --------------------------------------------
 
-    grim
-    slurp
-    wl-clipboard
-
     brightnessctl
-
-
-  # --------------------------------------------
-  # Wallpaper
-  # --------------------------------------------
-
-    waypaper
-    awww
-
 
   # --------------------------------------------
   # Audio
@@ -268,41 +248,27 @@
     mpc
     mpd-mpris
     playerctl
-    ncmpcpp
-
-  # --------------------------------------------
-  # Cursor
-  # --------------------------------------------
-
-    bibata-cursors
-
-  # --------------------------------------------
-  # Applications
-  # --------------------------------------------
-
-    nautilus
-    telegram-desktop
-    rofi
-    firefox
 
   ];
-
+    
   # --------------------------------------------
   # Fonts
   # --------------------------------------------
-
-  fonts.packages = with pkgs; [
+  
+  fonts.packages = with pkgs; [  
     material-design-icons
     font-awesome
     nerd-fonts.jetbrains-mono
   ];
+
+  fonts.fontconfig.allowBitmaps = true;
 
   # ============================================
   # Fonts
   # ============================================
 
   fonts.fontconfig.enable = true;
-
+  
   # ============================================
   # Zapret
   # ============================================
@@ -311,7 +277,7 @@
     enable = true;
     #whitelist = [
      # "rutracker.org"
-     # "youtube.com"
+     #  "youtube.com"
      # "discord.com"
      # "discord.gg"
      # "discordapp.com"
@@ -319,6 +285,13 @@
      # "ciscobinary.openh264.org"
 
     #];
+    blacklist = [
+       "github.com"
+       "vk.ru"
+       "deepseek.com"
+
+
+    ];
     configureFirewall = true;
     params = [
        "--dpi-desync=fake,fakedsplit"
@@ -331,7 +304,6 @@
     ];
   };
 
-
   # ============================================
   # Bluetooth
   # ============================================
@@ -341,15 +313,13 @@
     enable = true;
     powerOnBoot = false;
   };
-
-
+  
   # ============================================
   # Tailscale
   # ============================================
 
   services.tailscale.enable = true;
-
-
+  
   # ============================================
   # MPD
   # ============================================
@@ -371,14 +341,13 @@
     };
   };
 
-
   # ============================================
   # Nix
   # ============================================
 
   nix.settings.auto-optimise-store = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -390,7 +359,7 @@
   # ============================================
 
   nixpkgs.config.allowUnfree = true;
-
+    
   boot.binfmt.registrations.appimage = {
     wrapInterpreterInShell = false;
     interpreter = "${pkgs.appimage-run}/bin/appimage-run";
@@ -411,10 +380,32 @@
     };
   };
 
+  
+  # ============================================
+  # Stylix
+  # ============================================
+
+  stylix.enable = true;
+
+  stylix.image = ./assets/7.png;
+
+  stylix.polarity = "dark";
+
+  stylix.fonts.monospace = {
+    package = pkgs.nerd-fonts.jetbrains-mono;
+    name = "JetBrainsMono Nerd Font";
+  };
+
+  programs.localsend = {
+    enable = true;
+    openFirewall = true;
+  };
+
 
   # ============================================
   # NixOS version
   # ============================================
 
   system.stateVersion = "26.05";
+
 }

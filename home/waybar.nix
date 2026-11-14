@@ -71,9 +71,9 @@
       }
     ];
 
-    style = ''
+        style = ''
       * {
-          font-family: "JetBrainsMono Nerd Font", "Roboto", "Helvetica", "sans-serif";
+          font-family: "JetBrainsMono Nerd Font";
           font-size: 12px;
           border: none;
           border-radius: 5px;
@@ -85,55 +85,55 @@
       }
 
       #mpris, #workspaces, #clock, #tray, #cpu, #memory, #temperature {
-          font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font Mono", "sans-serif";
-          background: rgba(20, 20, 20, 0.7);
-          color: @color7;
-          border: 2px solid @color4;
+          font-family: "JetBrainsMono Nerd Font";
+          background: alpha(@base00, 0.7); 
+          color: @base05; /* Основной текст */
+          border: 2px solid @base0D; /* Акцентный цвет для рамки */
           border-radius: 5px;
           padding: 0px 15px;
           margin: 5px 3px;
       }
 
       #workspaces button {
-          padding: 0 12px;
-          margin: 4px 4px;
-          background-color: rgba(255, 255, 255, 0.05);
-          color: @color7;
+          padding: 0 10px;
+          margin: 4px 3px;
+          background-color: transparent; /* Убираем фон у неактивных */
+          color: @base05; /* Текст неактивных */
           border-radius: 5px;
           border: 2px solid transparent;
           transition: all 0.4s cubic-bezier(.55,-0.04,.3,1.44);
       }
 
       #workspaces button.active {
-          background-color: @color4;
-          color: @background;
-          border: 2px solid @color4;
-          min-width: 40px;
+          background-color: @base05; /* Белый фон (или @base0D для акцента) */
+          color: @base00; /* Черный текст */
+          border: 2px solid @base05;
+          min-width: 30px; 
       }
 
       #workspaces button:hover {
-          background-color: rgba(255, 255, 255, 0.15);
+          background-color: alpha(@base05, 0.2); /* Легкий фон при наведении */
           box-shadow: inherit;
           text-shadow: inherit;
       }
 
       #temperature.critical {
-          background-color: #f38ba8;
-          color: #1e1e2e;
+          background-color: @base08; /* Красный из Stylix */
+          color: @base00;
       }
 
       #battery, #network {
-          background-color: rgba(20, 20, 20, 0.7);
-          color: @color7;
-          border: 2px solid @color4;
+          background-color: alpha(@base00, 0.7);
+          color: @base05;
+          border: 2px solid @base0D;
           border-radius: 5px;
           padding: 0 15px;
           margin: 4px 10px;
       }
 
       #battery:hover, #network:hover {
-          background-color: @background;
-          color: @color7;
+          background-color: @base01;
+          color: @base05;
       }
     '';
   };

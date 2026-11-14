@@ -11,18 +11,19 @@
     awww
     waypaper
     rofi
-    alacritty
     bibata-cursors
     pywal16
     grim
     slurp
     wl-clipboard
+    zathura 
+    alacritty 
+    fastfetch
 
     # ============================================
     # System / CLI
     # ============================================
 
-    fastfetch
     btop
     tree
     fd
@@ -30,7 +31,6 @@
     curl
     wget
     unzip
-    gh
     tailscale
     localsend
 
@@ -39,7 +39,6 @@
     # ============================================
 
     mpv
-    ncmpcpp
     cava
     ffmpeg
 
@@ -47,12 +46,15 @@
     # Dev / Creative
     # ============================================
 
-    (python3.withPackages (ps: with ps; [
+     (python3.withPackages (ps: with ps; [
       openai-whisper
       python-mpd2
       sounddevice
       numpy
+      aiogram
     ]))
+    
+
     sunvox
 
     # ============================================
