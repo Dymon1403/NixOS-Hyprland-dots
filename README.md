@@ -11,7 +11,7 @@ Or so:
 
 
 OR:
-![Desktop Preview](Screenshots/screeen3.png)
+![Desktop Preview](Screenshots/screen3.png)
 
 
 # install
