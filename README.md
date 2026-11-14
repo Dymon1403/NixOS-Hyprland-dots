@@ -7,11 +7,11 @@ this:
 
 
 Or so:
-![Desktop Preview](Screenshots/screen1)
+![Desktop Preview](Screenshots/screen1.png)
 
 
 OR:
-![Desktop Preview](Screenshots/screeen3)
+![Desktop Preview](Screenshots/screeen3.png)
 
 
 # install
