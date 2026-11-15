@@ -387,7 +387,11 @@
 
   stylix.enable = true;
 
+
+
+  # SWAP THIS TO CHANGE WALLPAPERS !
   stylix.image = ./assets/7.png;
+
 
   stylix.polarity = "dark";
 
